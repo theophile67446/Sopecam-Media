@@ -54,17 +54,17 @@ export const ARTICLES: Article[] = [
   {
     id: 'a01',
     slug: 'economie-numerique-cameroun-plan-2030',
-    title: "Économie numérique : le Cameroun dévoile sa feuille de route à l'horizon 2030",
-    excerpt: "Le gouvernement présente un plan ambitieux pour faire du numérique un levier de croissance : infrastructures, formation et souveraineté des données au programme.",
+    title: "Digital Economy: Cameroon Unveils Its 2030 Roadmap",
+    excerpt: "The government presents an ambitious plan to turn digital technology into a growth engine: infrastructure, training and data sovereignty are on the agenda.",
     body: [
-      { type: 'p', text: "Yaoundé — C'est devant un parterre d'opérateurs économiques et de startups que le ministre des Postes et Télécommunications a levé le voile, hier soir, sur la feuille de route numérique du Cameroun à l'horizon 2030. Un document de 120 pages qui fixe un cap clair : porter la part du numérique à 15 % du PIB national." },
-      { type: 'p', text: "Le plan s'articule autour de trois piliers : l'achèvement de la dorsale fibre optique reliant les dix régions, la formation de 100 000 jeunes aux métiers du digital, et la création d'un cadre juridique protecteur pour les données personnelles des Camerounais." },
-      { type: 'h2', text: "Une souveraineté informationnelle revendiquée" },
-      { type: 'p', text: "Au cœur du dispositif, la question de la souveraineté des données occupe une place centrale. Le gouvernement entend imposer l'hébergement local des données sensibles et soutenir l'émergence de centres de données nationaux, à l'image du centre de Yaoundé inauguré au printemps dernier." },
-      { type: 'quote', text: "Nous ne voulons plus être de simples consommateurs de technologies importées. Le Cameroun doit devenir un producteur de contenus et de solutions numériques.", author: "Ministre des Postes et Télécommunications" },
-      { type: 'p', text: "Les médias publics ne sont pas en reste. La SOPECAM, qui fêtera ses 50 ans en 2027, est citée en exemple pour son plan de reconfiguration de l'écosystème numérique, qui vise le doublement annuel des recettes digitales du groupe." },
-      { type: 'callout', text: "100 000 jeunes formés, 15 % du PIB, 10 régions connectées : les trois chiffres clés du plan numérique 2030." },
-      { type: 'p', text: "Reste la question du financement. Le coût total est estimé à 850 milliards de FCFA, dont une partie devrait être mobilisée auprès de partenaires techniques et financiers, ainsi que du secteur privé national." },
+      { type: 'p', text: "Yaoundé — It was before an audience of business leaders and startups that the Minister of Posts and Telecommunications unveiled, last night, Cameroon's digital roadmap for 2030. A 120-page document that sets a clear course: raising the digital sector's share to 15% of national GDP." },
+      { type: 'p', text: "The plan rests on three pillars: completing the fibre-optic backbone linking the ten regions, training 100,000 young people in digital professions, and creating a protective legal framework for Cameroonians' personal data." },
+      { type: 'h2', text: "A claim to informational sovereignty" },
+      { type: 'p', text: "At the heart of the plan, data sovereignty takes centre stage. The government intends to require local hosting of sensitive data and to support the emergence of national data centres, following the example of the Yaoundé facility inaugurated last spring." },
+      { type: 'quote', text: "We no longer want to be mere consumers of imported technology. Cameroon must become a producer of digital content and solutions.", author: "Minister of Posts and Telecommunications" },
+      { type: 'p', text: "Public media are not left behind. SOPECAM, which will celebrate its 50th anniversary in 2027, is cited as an example for its plan to reshape its digital ecosystem, targeting a yearly doubling of the group's digital revenue." },
+      { type: 'callout', text: "100,000 young people trained, 15% of GDP, 10 regions connected: the three key figures of the 2030 digital plan." },
+      { type: 'p', text: "The question of funding remains. The total cost is estimated at 850 billion FCFA, part of which is expected to come from technical and financial partners as well as the national private sector." },
     ],
     publication: 'CT',
     universe: 'actus',
@@ -302,15 +302,15 @@ export const ARTICLES: Article[] = [
   {
     id: 'a09',
     slug: 'fake-news-video-truquee-elections',
-    title: "FAUX — Cette vidéo virale ne montre pas des violences dans un bureau de vote à Yaoundé",
-    excerpt: "Une séquence partagée des dizaines de milliers de fois prétend montrer des affrontements récents dans la capitale. Notre vérification prouve qu'il s'agit d'images d'archives tournées au Nigéria en 2023.",
+    title: "FALSE — This Viral Video Does Not Show Violence at a Polling Station in Yaoundé",
+    excerpt: "A clip shared tens of thousands of times claims to show recent clashes in the capital. Our verification proves it is archive footage filmed in Nigeria in 2023.",
     body: [
-      { type: 'p', text: "La vidéo dure 47 secondes. On y voit une foule en colère devant ce qui ressemble à un bureau de vote, des tables renversées, des cris. Partagée plus de 80 000 fois depuis jeudi, elle est légendée : « Yaoundé hier, la tension monte ». Notre cellule de vérification a remonté la piste de ces images." },
-      { type: 'h2', text: "Comment nous avons vérifié" },
-      { type: 'p', text: "Trois indices ne trompent pas. D'abord, les affiches visibles en arrière-plan portent des inscriptions en anglais faisant référence à l'INEC, la commission électorale nigériane. Ensuite, la recherche d'image inversée permet de retrouver la séquence originale, publiée en février 2023. Enfin, aucune source locale crédible ne fait état d'incidents de cette nature à Yaoundé cette semaine." },
-      { type: 'callout', text: "Verdict : FAUX. Il s'agit d'images d'archives tournées au Nigéria en février 2023, détournées de leur contexte." },
-      { type: 'quote', text: "La désinformation électorale vise à créer la peur et la défiance. Avant de partager, vérifiez la date, le lieu et la source.", author: "Chef de la cellule fact-checking SOPECAM" },
-      { type: 'p', text: "Vous avez repéré une information douteuse ? Signalez-la via notre formulaire dédié : notre équipe la vérifiera sous 48 heures." },
+      { type: 'p', text: "The video lasts 47 seconds. It shows an angry crowd outside what looks like a polling station, overturned tables, shouting. Shared more than 80,000 times since Thursday, it is captioned: \"Yaoundé yesterday, tension is rising\". Our verification unit traced the origin of these images." },
+      { type: 'h2', text: "How we verified" },
+      { type: 'p', text: "Three clues leave no doubt. First, the posters visible in the background carry English inscriptions referring to INEC, Nigeria's electoral commission. Second, a reverse image search leads back to the original footage, published in February 2023. Finally, no credible local source reports any incident of this nature in Yaoundé this week." },
+      { type: 'callout', text: "Verdict: FALSE. This is archive footage filmed in Nigeria in February 2023, taken out of context." },
+      { type: 'quote', text: "Electoral disinformation is designed to create fear and distrust. Before sharing, check the date, the place and the source.", author: "Head of the SOPECAM fact-checking unit" },
+      { type: 'p', text: "Spotted a dubious claim? Report it through our dedicated form: our team will verify it within 48 hours." },
     ],
     publication: 'CI',
     universe: 'fact-checking',
@@ -529,7 +529,7 @@ export const ARTICLES: Article[] = [
   {
     id: 'a17',
     slug: 'opinion-education-numerique-ecoles',
-    title: "Tribune — « Le numérique à l'école ne sera pas un gadget ou ne sera pas »",
+    title: "Op-Ed — \"Digital Education Will Be Meaningful or It Will Not Be\"",
     excerpt: "Professeur des universités, Martin Etoundi plaide pour une intégration exigeante du numérique éducatif, centrée sur les enseignants avant les équipements.",
     body: [
       { type: 'p', text: "Annoncer des tablettes pour tous les élèves fait de belles photographies. Construire une véritable éducation au numérique exige autre chose : des enseignants formés, des contenus pédagogiques de qualité et une vision de long terme." },
@@ -583,7 +583,7 @@ export const ARTICLES: Article[] = [
   {
     id: 'a19',
     slug: 'verification-subvention-carburant-rumeur',
-    title: "TROMPEUR — Non, le prix du carburant n'a pas été divisé par deux ce week-end",
+    title: "MISLEADING — No, Fuel Prices Were Not Halved Over the Weekend",
     excerpt: "Une fausse capture d'écran d'un communiqué officiel affirme une baisse spectaculaire des prix à la pompe. La réalité des chiffres.",
     body: [
       { type: 'p', text: "Le document circule depuis samedi matin sur WhatsApp : un faux communiqué, orné du logo du ministère du Commerce, annonçant une baisse de 50 % des prix du super et du gasoil. Plusieurs stations-service de Douala ont même dû gérer des files d'attente de conducteurs crédules." },
@@ -850,7 +850,7 @@ export const ARTICLES: Article[] = [
   {
     id: 'a28',
     slug: 'sondage-exclusif-jeunes-entreprendre-cameroun',
-    title: "Sondage exclusif — 73 % des jeunes Camerounais veulent entreprendre, mais 8 sur 10 manquent de financement",
+    title: "Exclusive Poll — 73% of Young Cameroonians Want to Start a Business, but 8 in 10 Lack Funding",
     excerpt: "Notre enquête réalisée auprès de 1 200 jeunes dans les dix régions révèle les aspirations et les freins de la jeunesse cameronaise.",
     body: [
       { type: 'p', text: "Ils ont entre 18 et 35 ans, un téléphone en poche et des ambitions plein la tête. Mais entre le rêve d'entreprendre et la réalité du financement, le fossé reste immense. C'est ce que révèle notre sondage exclusif réalisé auprès de 1 200 jeunes dans les dix régions du Cameroun." },
@@ -942,7 +942,7 @@ export const ARTICLES: Article[] = [
   {
     id: 'a31',
     slug: 'faux-vaccin-rumeur-danger-yaounde',
-    title: "FAUX — Non, cette campagne de vaccination n'est pas une expérimentation clandestine",
+    title: "FALSE — No, This Vaccination Campaign Is Not a Secret Experiment",
     excerpt: "Une rumeur virale affirme que des agents de santé mènent des tests non autorisés dans les quartiers périphériques de Yaoundé. Notre vérification.",
     body: [
       { type: 'p', text: "Depuis trois jours, un message vocal WhatsApp tourne dans les groupes de quartier de Yaoundé : des agents de santé se présentant comme « enquêteurs vaccinateurs » seraient en train de tester un nouveau vaccin à l'insu de la population dans les quartiers d'Ekounou et de Nkolbisson." },
@@ -1007,15 +1007,15 @@ export const ARTICLES: Article[] = [
   {
     id: 'a33',
     slug: 'signalements-bilan-mensuel-cellule-verification',
-    title: "Signalements — La cellule de vérification a traité 67 informations douteuses en juillet",
-    excerpt: "Notre équipe fact-checking publie son bilan mensuel : 45 % de faux, 22 % de trompeurs, et une nouvelle rubrique pour vous aider à signaler.",
+    title: "Reports — Fact-Checking Unit Handled 67 Dubious Claims in July",
+    excerpt: "Our fact-checking team publishes its monthly review: 45% false, 22% misleading, and a new section to help you report suspicious content.",
     body: [
-      { type: 'p', text: "En juillet 2026, notre cellule de vérification a reçu 134 signalements via le formulaire dédié et les réseaux sociaux. Sur ce total, 67 informations douteuses ont été instruites et vérifiées par nos journalistes. Bilan : 45 % se sont révélées entièrement fausses, 22 % trompeuses, 18 % vraies mais sorties de leur contexte, et 15 % invérifiables par manque de sources." },
-      { type: 'p', text: "Les thématiques les plus signalées restent la santé (vaccins, remèdes miracles) et la politique (rumeurs électorales, fausses déclarations), qui représentent 62 % des saisines." },
-      { type: 'h2', text: "Comment signaler une info douteuse ?" },
-      { type: 'p', text: "Rendez-vous sur notre page Contact, rubrique « Correction d'article », ou utilisez le bouton de signalement présent sur chaque article. Notre équipe s'engage à répondre sous 48 heures ouvrées. Les signalements les plus urgents (santé, sécurité) sont traités en priorité sous 6 heures." },
-      { type: 'quote', text: "Chaque signalement est une pièce apportée à l'édifice de la vérité. Merci à nos lecteurs vigilants.", author: "Cellule fact-checking SOPECAM" },
-      { type: 'callout', text: "134 signalements reçus, 67 vérifications menées, 45 % de faux : le bilan juillet de la cellule fact-checking." },
+      { type: 'p', text: "In July 2026, our verification unit received 134 reports through its dedicated form and social media. Of that total, 67 dubious claims were investigated and verified by our journalists. The outcome: 45% proved entirely false, 22% misleading, 18% true but taken out of context, and 15% unverifiable for lack of sources." },
+      { type: 'p', text: "The most reported topics remain health (vaccines, miracle cures) and politics (electoral rumours, false statements), which together account for 62% of submissions." },
+      { type: 'h2', text: "How to report a dubious claim" },
+      { type: 'p', text: "Go to our Contact page, under \"Article correction\", or use the report button available on every article. Our team commits to responding within 48 working hours. The most urgent reports (health, security) are prioritised and handled within 6 hours." },
+      { type: 'quote', text: "Every report is a brick added to the edifice of truth. Thank you to our vigilant readers.", author: "SOPECAM fact-checking unit" },
+      { type: 'callout', text: "134 reports received, 67 verifications carried out, 45% false: the fact-checking unit's July review." },
     ],
     publication: 'CT',
     universe: 'fact-checking',
@@ -1037,7 +1037,7 @@ export const ARTICLES: Article[] = [
   {
     id: 'a34',
     slug: 'analyse-politique-etrangere-cameroun-diplomatie',
-    title: "Analyse — La diplomatie camerounaise à la croisée des chemins entre partenaires historiques et nouveaux alliances",
+    title: "Analysis — Cameroon's Diplomacy at a Crossroads Between Historic Partners and New Alliances",
     excerpt: "Entre la France qui recule, la Chine qui avance et les nouvelles puissances du Golfe, comment le Cameroun redéfinit-il sa diplomatie ? Notre décryptage — contenu Premium.",
     body: [
       { type: 'p', text: "Le Cameroun est à un tournant de sa politique étrangère. Partenaire historique de la France, le pays diversifie ses alliances à un rythme soutenu : la Chine est devenue le premier partenaire commercial en 2025, les Émirats arabes unis multiplient les investissements, et la Turquie s'impose dans les infrastructures de défense." },

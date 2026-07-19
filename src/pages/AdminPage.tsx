@@ -50,7 +50,7 @@ export default function AdminPage() {
             <LayoutDashboard className="h-7 w-7 text-sopecam-green dark:text-sopecam-green-light" />
             Tableau de bord
           </h1>
-          <p className="mt-1 text-muted-foreground">Vue d'ensemble des revenus, abonnements et contenus · Cap 2030 : 1 Md FCFA/an</p>
+          <p className="mt-1 text-muted-foreground">Vue d'ensemble des revenus, abonnements et contenus</p>
         </div>
         <span className="rounded-full bg-[#059669]/10 px-4 py-1.5 text-sm font-bold text-[#059669] ring-1 ring-[#059669]/30">
           Objectif 2026 : en avance de 12 %

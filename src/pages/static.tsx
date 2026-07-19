@@ -230,7 +230,7 @@ export function QuiSommesNousPage() {
     { year: '2012', text: 'Cameroon Business Today rejoint le bouquet économique.' },
     { year: '2018', text: 'Weekend Sports & Loisirs devient la référence sportive du week-end.' },
     { year: '2026', text: 'Reconfiguration numérique : un portail unifié pour les 5 publications.' },
-    { year: '2027', text: '50 ans de la SOPECAM — cap sur le milliard de recettes digitales.' },
+    { year: '2027', text: '50 ans de la SOPECAM — cap sur la transformation numérique.' },
   ]
 
   return (
@@ -253,7 +253,7 @@ export function QuiSommesNousPage() {
           { icon: History, n: '50 ans', l: 'd\'excellence éditoriale' },
           { icon: Newspaper, n: '5', l: 'publications' },
           { icon: Users, n: '300+', l: 'journalistes' },
-          { icon: Award, n: '1 Md', l: 'FCFA de recettes visées en 2030' },
+          { icon: Award, n: '10', l: 'régions couvertes' },
         ].map((s) => (
           <div key={s.l} className="rounded-xl border border-border bg-card p-5 text-center shadow-sm">
             <s.icon className="mx-auto h-6 w-6 text-sopecam-green dark:text-sopecam-green-light" />
