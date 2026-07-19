@@ -310,7 +310,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-8 md:flex-row">
               <div className="w-full max-w-sm shrink-0">
                 <img
-                  src="/assets/media/carte-cameroun.svg"
+                  src="/assets/media/carte-cameroun.png"
                   alt="Carte du Cameroun avec ses dix régions"
                   className="w-full drop-shadow-md"
                   loading="lazy"
