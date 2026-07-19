@@ -185,8 +185,8 @@ export default function Home() {
         {/* ─── Dernières actualités ────────────────────────── */}
         <section className="mt-12" aria-label="Dernières actualités">
           <SectionHeading
-            title="{t.latestTitle}"
-            subtitle="{t.latestSubtitle}"
+            title={t.latestTitle}
+            subtitle={t.latestSubtitle}
             linkTo="/actus"
             color="#008000"
             icon={<Newspaper className="h-5 w-5 text-sopecam-green dark:text-sopecam-green-light" />}
