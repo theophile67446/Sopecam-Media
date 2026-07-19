@@ -5,7 +5,7 @@ import { ARTICLES, getLatestArticles, getArticlesByUniverse } from '@/lib/data/a
 import { UNIVERSE_LIST, PUBLICATION_LIST, type PubCode } from '@/lib/data/publications'
 import { HeroCarousel } from '@/components/home/HeroCarousel'
 import { UneSection } from '@/components/home/UneSection'
-import { NewsFeed, PodcastSection, VideoSection, PartnerSection } from '@/components/home/sections'
+import { NewsFeed, PodcastSection, VideoSection } from '@/components/home/sections'
 import { ArticleCard } from '@/components/ArticleCard'
 import { SectionHeading } from '@/components/widgets'
 import { setPageMeta, setJsonLd, formatViews, SITE_ORIGIN } from '@/lib/utils2'
@@ -274,16 +274,16 @@ export default function Home() {
             <div className="texture-dots pointer-events-none absolute inset-0 opacity-30" aria-hidden />
             <div className="relative flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
               <div className="flex-1">
-                <p className="overline-label text-gold">{t('shopTitle')}</p>
+                <p className="overline-label text-gold">{t.shopTitle}</p>
                 <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">SHOPecam</h2>
-                <p className="mt-2 text-sopecam-mint">{t('shopTagline')}</p>
+                <p className="mt-2 text-sopecam-mint">{t.shopTagline}</p>
                 <a
                   href="https://boutique-sopecam.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-gold px-6 text-sm font-bold uppercase tracking-wide text-[#1A1A1A] shadow-md transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl"
                 >
-                  {t('shopCta')} <ArrowRight className="h-4 w-4" />
+                  {t.shopCta} <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
               <div className="flex shrink-0 gap-3">
@@ -329,8 +329,8 @@ export default function Home() {
                   <span className="h-1.5 w-1.5 rounded-full bg-sopecam-green-dark" aria-hidden />
                   10 régions · 58 départements
                 </div>
-                <h2 className="mt-3 font-display text-2xl font-bold text-foreground md:text-3xl">{t('regionsTitle')}</h2>
-                <p className="mt-2 text-muted-foreground">{t('regionsTagline')}</p>
+                <h2 className="mt-3 font-display text-2xl font-bold text-foreground md:text-3xl">{t.regionsTitle}</h2>
+                <p className="mt-2 text-muted-foreground">{t.regionsTagline}</p>
                 <div className="mt-5 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
                   {['Adamaoua', 'Centre', 'Est', 'Extrême-Nord', 'Littoral', 'Nord', 'Nord-Ouest', 'Ouest', 'Sud', 'Sud-Ouest'].map((r) => (
                     <span key={r} className="inline-flex items-center gap-2 rounded-lg border border-sopecam-green/15 bg-sopecam-green/[0.04] px-3 py-2 text-foreground/80">
