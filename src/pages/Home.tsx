@@ -309,23 +309,12 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-2xl border border-sopecam-green/20 bg-card p-8 shadow-sm md:p-10">
             <div className="flex flex-col items-center gap-8 md:flex-row">
               <div className="w-full max-w-sm shrink-0">
-                <svg viewBox="0 0 400 500" className="w-full drop-shadow-md" aria-label="Carte du Cameroun">
-                  <rect x="0" y="0" width="400" height="500" fill="none" />
-                  {/* Carte stylisée simplifiée du Cameroun */}
-                  <path d="M200 30 L260 60 L290 100 L310 150 L320 200 L300 240 L310 280 L290 320 L270 350 L240 370 L210 380 L190 370 L160 350 L140 320 L120 280 L110 240 L100 200 L110 150 L130 100 L160 60 Z"
-                    fill="#2d6a2d" stroke="#1a4a1a" strokeWidth="2" opacity="0.85" />
-                  {/* Régions - points */}
-                  <circle cx="200" cy="90" r="4" fill="#D4A843" /><text x="205" y="85" fontSize="9" fill="#D4A843" fontWeight="bold">Adamaoua</text>
-                  <circle cx="260" cy="120" r="4" fill="#D4A843" /><text x="265" y="115" fontSize="9" fill="#D4A843" fontWeight="bold">Nord</text>
-                  <circle cx="300" cy="180" r="4" fill="#D4A843" /><text x="305" y="175" fontSize="9" fill="#D4A843" fontWeight="bold">Extrême-Nord</text>
-                  <circle cx="220" cy="200" r="4" fill="#D4A843" /><text x="225" y="195" fontSize="9" fill="#D4A843" fontWeight="bold">Nord-Ouest</text>
-                  <circle cx="180" cy="220" r="4" fill="#D4A843" /><text x="155" y="215" fontSize="9" fill="#D4A843" fontWeight="bold">Sud-Ouest</text>
-                  <circle cx="240" cy="240" r="4" fill="#D4A843" /><text x="245" y="250" fontSize="9" fill="#D4A843" fontWeight="bold">Ouest</text>
-                  <circle cx="260" cy="290" r="4" fill="#D4A843" /><text x="265" y="300" fontSize="9" fill="#D4A843" fontWeight="bold">Centre</text>
-                  <circle cx="200" cy="310" r="4" fill="#D4A843" /><text x="175" y="320" fontSize="9" fill="#D4A843" fontWeight="bold">Littoral</text>
-                  <circle cx="280" cy="340" r="4" fill="#D4A843" /><text x="285" y="350" fontSize="9" fill="#D4A843" fontWeight="bold">Est</text>
-                  <circle cx="220" cy="370" r="4" fill="#D4A843" /><text x="195" y="380" fontSize="9" fill="#D4A843" fontWeight="bold">Sud</text>
-                </svg>
+                <img
+                  src="/assets/media/carte-cameroun.svg"
+                  alt="Carte du Cameroun avec ses dix régions"
+                  className="w-full drop-shadow-md"
+                  loading="lazy"
+                />
               </div>
               <div className="flex-1">
                 <div className="inline-flex items-center gap-2 rounded-full bg-sopecam-green/10 px-3 py-1 text-xs font-semibold text-sopecam-green-dark">
