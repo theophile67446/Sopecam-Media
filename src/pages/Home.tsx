@@ -1,16 +1,44 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router'
-import { ArrowRight, Crown, Eye, Newspaper, Sparkles } from 'lucide-react'
+import { Archive, ArrowRight, Crown, Eye, MapPin, Newspaper, Smartphone, Sparkles, Zap } from 'lucide-react'
 import { ARTICLES, getLatestArticles, getArticlesByUniverse } from '@/lib/data/articles'
 import { UNIVERSE_LIST, PUBLICATION_LIST, type PubCode } from '@/lib/data/publications'
+import { EPAPER_EDITIONS } from '@/lib/data/media'
+import { articleImageSrc } from '@/lib/data/assets'
 import { HeroCarousel } from '@/components/home/HeroCarousel'
 import { UneSection } from '@/components/home/UneSection'
 import { NewsFeed, PodcastSection, VideoSection } from '@/components/home/sections'
+import { CameroonMap } from '@/components/home/CameroonMap'
 import { ArticleCard } from '@/components/ArticleCard'
 import { SectionHeading } from '@/components/widgets'
 import { setPageMeta, setJsonLd, formatViews, SITE_ORIGIN } from '@/lib/utils2'
 import { useAppStore } from '@/store/appStore'
 import { useT } from '@/lib/i18n'
+
+// Régions : terme de recherche distinctif (nom ou capitale) — les noms
+// courts (« Est », « Nord », « Sud ») créent trop de faux positifs
+const REGIONS: { name: string; query: string }[] = [
+  { name: 'Adamaoua', query: 'Adamaoua' },
+  { name: 'Centre', query: 'Yaoundé' },
+  { name: 'Est', query: 'Bertoua' },
+  { name: 'Extrême-Nord', query: 'Extrême-Nord' },
+  { name: 'Littoral', query: 'Douala' },
+  { name: 'Nord', query: 'Garoua' },
+  { name: 'Nord-Ouest', query: 'Bamenda' },
+  { name: 'Ouest', query: 'Bafoussam' },
+  { name: 'Sud', query: 'Ebolowa' },
+  { name: 'Sud-Ouest', query: 'Buea' },
+]
+
+// Même logique de correspondance que la page Recherche
+function countRegionArticles(query: string) {
+  const term = query.toLowerCase()
+  return ARTICLES.filter((a) =>
+    a.title.toLowerCase().includes(term) ||
+    a.excerpt.toLowerCase().includes(term) ||
+    a.tags.some((tag) => tag.toLowerCase().includes(term)),
+  ).length
+}
 
 // Univers d'atterrissage de chaque publication
 const PUB_UNIVERSE_PATH: Record<PubCode, string> = {
@@ -40,6 +68,14 @@ export default function Home() {
   const latest = getLatestArticles(18)
   // Top 3 par vues — remplit l'espace sous le carrousel héros
   const mostRead = [...ARTICLES].sort((a, b) => b.views - a.views).slice(0, 3)
+  const [hoveredRegion, setHoveredRegion] = useState<string | null>(null)
+  const regionStats = useMemo(() => REGIONS.map((r) => ({ ...r, count: countRegionArticles(r.query) })), [])
+  const regionQueries = useMemo(() => Object.fromEntries(REGIONS.map((r) => [r.name, r.query])), [])
+  // Dernières correspondances : sous-rubrique « Régions » + reportages ancrés dans une région
+  const regionArticles = ARTICLES
+    .filter((a) => a.subcategory === 'Régions' || REGIONS.some((r) => a.title.toLowerCase().includes(r.query.toLowerCase())))
+    .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
+    .slice(0, 2)
   const dossiers = ARTICLES.filter((a) => a.subcategory === 'Enquêtes' || (a.access === 'premium' && a.universe !== 'economie')).slice(0, 4)
   // 3 articles + tuile « Explorer » = grille de 4 toujours pleine (pas de colonne vide)
   const byUniverse = UNIVERSE_LIST.map((u) => ({
@@ -271,66 +307,147 @@ export default function Home() {
           <VideoSection />
         </div>
 
-        {/* ─── SHOPecam ────────────────────────────────────── */}
-        <section className="mt-14" aria-label="Boutique">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sopecam-green-dark via-sopecam-green to-sopecam-green-light p-8 shadow-lg md:p-10">
-            <div className="texture-dots pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-            <div className="relative flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-              <div className="flex-1">
-                <p className="overline-label text-gold">{t.shopTitle}</p>
-                <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">SHOPecam</h2>
-                <p className="mt-2 text-sopecam-mint">{t.shopTagline}</p>
-                <a
-                  href="https://boutique-sopecam.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-gold px-6 text-sm font-bold uppercase tracking-wide text-[#1A1A1A] shadow-md transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl"
-                >
-                  {t.shopCta} <ArrowRight className="h-4 w-4" />
-                </a>
+        {/* ─── Régions — Carte du Cameroun ─────────────────── */}
+        <section className="mt-14" aria-label="Régions">
+          <SectionHeading
+            title={t.regionsTitle}
+            subtitle={t.regionsOverline}
+            linkTo="/actus?cat=Régions"
+            linkLabel={t.regionsBrowseAll}
+            color="#008000"
+            icon={<MapPin className="h-5 w-5 text-sopecam-green dark:text-sopecam-green-light" />}
+          />
+          <div className="relative overflow-hidden rounded-2xl border border-sopecam-green/20 bg-card shadow-sm">
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{ background: 'radial-gradient(680px 320px at 8% 0%, rgba(0,128,0,0.07), transparent 60%)' }}
+              aria-hidden="true"
+            />
+            <div className="relative flex flex-col items-center gap-8 p-8 md:flex-row md:items-center md:gap-10 md:p-10">
+              <div className="relative w-full max-w-sm shrink-0">
+                <CameroonMap hovered={hoveredRegion} onHover={setHoveredRegion} regionQueries={regionQueries} />
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-sopecam-green-dark/90 px-3.5 py-1.5 text-xs font-semibold text-white shadow-md ring-1 ring-white/20 backdrop-blur-sm" aria-live="polite">
+                  {hoveredRegion
+                    ? `${hoveredRegion} · ${regionStats.find((r) => r.name === hoveredRegion)?.count ?? 0} ${t.regionsArticles}`
+                    : '10 régions · 58 départements'}
+                </div>
               </div>
-              <div className="flex shrink-0 gap-3">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
-                  <span className="text-3xl font-black text-white" aria-hidden>🛒</span>
-                </div>
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
-                  <span className="text-3xl font-black text-white" aria-hidden>📰</span>
-                </div>
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
-                  <span className="text-3xl font-black text-white" aria-hidden>💳</span>
+              <div className="min-w-0 flex-1">
+                <p className="max-w-xl text-muted-foreground">{t.regionsTagline}</p>
+                <div className="mt-5 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+                  {regionStats.map((r) => (
+                    <Link
+                      key={r.name}
+                      to={`/recherche?q=${encodeURIComponent(r.query)}`}
+                      onMouseEnter={() => setHoveredRegion(r.name)}
+                      onMouseLeave={() => setHoveredRegion(null)}
+                      className={`group/region flex items-center justify-between gap-2 rounded-lg border px-3 py-2 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sm ${hoveredRegion === r.name
+                          ? 'border-sopecam-green/40 bg-sopecam-green/10 text-foreground'
+                          : 'border-sopecam-green/15 bg-sopecam-green/[0.04] text-foreground/80'
+                        }`}
+                    >
+                      <span className="inline-flex min-w-0 items-center gap-2">
+                        <span className={`h-2 w-2 shrink-0 rounded-full transition-colors ${hoveredRegion === r.name ? 'bg-gold' : 'bg-sopecam-green/60'}`} aria-hidden />
+                        <span className="truncate">{r.name}</span>
+                      </span>
+                      {r.count > 0 ? (
+                        <span className="shrink-0 rounded-full bg-sopecam-green/10 px-2 py-0.5 text-[11px] font-bold text-sopecam-green-dark dark:bg-sopecam-green/25 dark:text-sopecam-green-light">
+                          {r.count}
+                        </span>
+                      ) : (
+                        <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity duration-150 group-hover/region:opacity-60" aria-hidden />
+                      )}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
+            {regionArticles.length > 0 && (
+              <div className="relative border-t border-border/70 px-8 pb-8 pt-6 md:px-10">
+                <p className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <Newspaper className="h-3.5 w-3.5" aria-hidden />
+                  {t.regionsLatest}
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {regionArticles.map((a) => (
+                    <Link
+                      key={a.id}
+                      to={`/article/${a.slug}`}
+                      className="group flex items-center gap-4 rounded-xl border border-border bg-background p-3 transition-all duration-150 hover:-translate-y-0.5 hover:border-sopecam-green/30 hover:shadow-md"
+                    >
+                      {articleImageSrc(a.slug) && (
+                        <img src={articleImageSrc(a.slug)} alt="" className="h-16 w-24 shrink-0 rounded-lg object-cover" loading="lazy" />
+                      )}
+                      <span className="min-w-0">
+                        <span className="line-clamp-2 text-sm font-semibold leading-snug transition-colors group-hover:text-sopecam-green-dark dark:group-hover:text-sopecam-green-light">
+                          {a.title}
+                        </span>
+                        <span className="mt-1 block text-xs text-muted-foreground">{a.author} · {a.readMinutes} min de lecture</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
-        {/* ─── Régions — Carte du Cameroun ─────────────────── */}
-        <section className="mt-14" aria-label="Régions">
-          <div className="relative overflow-hidden rounded-2xl border border-sopecam-green/20 bg-card p-8 shadow-sm md:p-10">
-            <div className="flex flex-col items-center gap-8 md:flex-row">
-              <div className="w-full max-w-sm shrink-0">
+        {/* ─── SHOPecam — kiosque numérique ────────────────── */}
+        <section className="group mt-14" aria-label="Boutique">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sopecam-green-dark via-sopecam-green to-sopecam-green-light shadow-lg">
+            <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-gold via-gold/60 to-transparent" aria-hidden />
+            <div className="texture-dots pointer-events-none absolute inset-0 opacity-30" aria-hidden />
+            <div className="relative flex flex-col items-center gap-8 p-8 text-center md:flex-row md:gap-10 md:p-10 md:text-left">
+              <div className="flex-1">
+                <p className="overline-label text-gold">{t.shopOverline}</p>
+                <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">SHOPecam</h2>
+                <p className="mx-auto mt-2 max-w-md text-sopecam-mint md:mx-0">{t.shopTagline}</p>
+                <ul className="mt-5 inline-flex flex-col gap-2.5 text-left text-sm text-white/90">
+                  <li className="flex items-center gap-2.5">
+                    <Zap className="h-4 w-4 shrink-0 text-gold" aria-hidden /> {t.shopFeature1}
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Smartphone className="h-4 w-4 shrink-0 text-gold" aria-hidden /> {t.shopFeature2}
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Archive className="h-4 w-4 shrink-0 text-gold" aria-hidden /> {t.shopFeature3}
+                  </li>
+                </ul>
+                <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start">
+                  <a
+                    href="https://boutique-sopecam.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-11 items-center gap-2 rounded-lg bg-gold px-6 text-sm font-bold uppercase tracking-wide text-[#1A1A1A] shadow-md transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl"
+                  >
+                    {t.shopCta} <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <span className="text-sm font-semibold text-sopecam-mint">{t.shopPrice}</span>
+                </div>
+              </div>
+              {/* Éventail des unes du jour — couvertures réelles */}
+              <div className="relative h-[200px] w-[250px] shrink-0 sm:h-[240px] sm:w-[300px]">
                 <img
-                  src="/assets/media/carte-cameroun.png"
-                  alt="Carte du Cameroun avec ses dix régions"
-                  className="w-full drop-shadow-md"
+                  src={EPAPER_EDITIONS[1].cover}
+                  alt=""
+                  className="absolute bottom-2 left-0 w-[44%] -rotate-[8deg] rounded-md shadow-xl ring-1 ring-black/20 transition-transform duration-250 group-hover:-translate-x-1 group-hover:-rotate-[11deg]"
                   loading="lazy"
                 />
-              </div>
-              <div className="flex-1">
-                <div className="inline-flex items-center gap-2 rounded-full bg-sopecam-green/10 px-3 py-1 text-xs font-semibold text-sopecam-green-dark">
-                  <span className="h-1.5 w-1.5 rounded-full bg-sopecam-green-dark" aria-hidden />
-                  10 régions · 58 départements
-                </div>
-                <h2 className="mt-3 font-display text-2xl font-bold text-foreground md:text-3xl">{t.regionsTitle}</h2>
-                <p className="mt-2 text-muted-foreground">{t.regionsTagline}</p>
-                <div className="mt-5 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-                  {['Adamaoua', 'Centre', 'Est', 'Extrême-Nord', 'Littoral', 'Nord', 'Nord-Ouest', 'Ouest', 'Sud', 'Sud-Ouest'].map((r) => (
-                    <span key={r} className="inline-flex items-center gap-2 rounded-lg border border-sopecam-green/15 bg-sopecam-green/[0.04] px-3 py-2 text-foreground/80">
-                      <span className="h-2 w-2 rounded-full bg-sopecam-green/60" aria-hidden />
-                      {r}
-                    </span>
-                  ))}
-                </div>
+                <img
+                  src={EPAPER_EDITIONS[3].cover}
+                  alt=""
+                  className="absolute bottom-4 left-1/2 z-10 w-[46%] -translate-x-1/2 rotate-1 rounded-md shadow-xl ring-1 ring-black/20"
+                  loading="lazy"
+                />
+                <img
+                  src={EPAPER_EDITIONS[0].cover}
+                  alt={`Une du jour — ${EPAPER_EDITIONS[0].title}`}
+                  className="absolute bottom-2 right-0 z-20 w-[48%] rotate-[8deg] rounded-md shadow-xl ring-1 ring-black/20 transition-transform duration-250 group-hover:translate-x-1 group-hover:rotate-[11deg]"
+                  loading="lazy"
+                />
+                <span className="absolute -top-1 right-0 z-30 rounded-full bg-gold px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#1A1A1A] shadow-md">
+                  {t.shopTodayBadge}
+                </span>
               </div>
             </div>
           </div>
