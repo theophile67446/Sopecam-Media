@@ -22,7 +22,7 @@ const PUB_UNIVERSE_PATH: Record<PubCode, string> = {
 }
 
 export default function Home() {
-  const { t } = useT()
+  const { t, lang } = useT()
   const { user } = useAppStore()
   useEffect(() => {
     setPageMeta('', 'SOPECAM Médias : Cameroon Tribune, CBT, Insider, Nyanga, Sports & Loisirs. L\'information souveraine du Cameroun.')
@@ -58,13 +58,16 @@ export default function Home() {
           <div className="mb-8 text-center">
             <p className="overline-label mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sopecam-green-light ring-1 ring-white/15">
               <Sparkles className="h-3.5 w-3.5" />
-              50 ans d'information souveraine · 1977-2027
+              {t.heroBadge}
             </p>
             <h1 className="mx-auto max-w-3xl font-display text-[32px] font-bold leading-tight text-white md:text-5xl">
-              L'information du Cameroun, <em className="text-gold not-italic underline decoration-gold/40 decoration-2 underline-offset-8">par ceux qui la vivent</em>
+              {lang === 'fr' ? "L'information du Cameroun, " : "Cameroon's news, "}
+              <em className="text-gold not-italic underline decoration-gold/40 decoration-2 underline-offset-8">
+                {lang === 'fr' ? 'par ceux qui la vivent' : 'by those who live it'}
+              </em>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-sopecam-mint md:text-lg">
-              Cinq publications, une rédaction unie, des dizaines de correspondants sur tout le territoire national.
+              {t.heroSubtitle}
             </p>
           </div>
 
@@ -114,7 +117,7 @@ export default function Home() {
         <section className="mt-12" aria-label="Nos publications">
           <SectionHeading
             title="L'univers SOPECAM"
-            subtitle="Cinq publications, cinq identités, une même exigence"
+            subtitle="{t.universeSubtitle}"
             color="#D4A843"
             icon={<Sparkles className="h-5 w-5 text-gold" />}
           />
@@ -135,7 +138,7 @@ export default function Home() {
                   <p className="mt-4 font-display text-lg font-bold leading-tight drop-shadow-sm">{p.shortName}</p>
                   <p className="mt-1 text-[13px] leading-snug text-white/90">{p.tagline}</p>
                   <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-white/95 transition-transform duration-250 group-hover:translate-x-1">
-                    Découvrir <ArrowRight className="h-3.5 w-3.5" />
+                    {t.discover} <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
               </Link>
@@ -146,8 +149,8 @@ export default function Home() {
         {/* ─── Dernières actualités ────────────────────────── */}
         <section className="mt-12" aria-label="Dernières actualités">
           <SectionHeading
-            title="À la une ce matin"
-            subtitle="La sélection de la rédaction, actualisée en continu"
+            title="{t.latestTitle}"
+            subtitle="{t.latestSubtitle}"
             linkTo="/actus"
             color="#008000"
             icon={<Newspaper className="h-5 w-5 text-sopecam-green dark:text-sopecam-green-light" />}
@@ -180,8 +183,8 @@ export default function Home() {
                 <Crown className="h-5 w-5 text-[#B8860B]" />
               </span>
               <div>
-                <h2 className="font-display text-2xl font-bold text-foreground">Enquêtes & Grands Dossiers</h2>
-                <p className="text-sm text-muted-foreground">Nos contenus les plus aboutis, réservés aux abonnés</p>
+                <h2 className="font-display text-2xl font-bold text-foreground">{t.dossiersTitle}</h2>
+                <p className="text-sm text-muted-foreground">{t.dossiersSubtitle}</p>
               </div>
             </div>
             {!user && (
@@ -189,7 +192,7 @@ export default function Home() {
                 to="/abonnement"
                 className="hidden items-center gap-2 rounded-lg bg-gold px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-[#1A1A1A] shadow-md transition-all duration-150 hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
               >
-                Débloquer <ArrowRight className="h-4 w-4" />
+                {t.unlock} <ArrowRight className="h-4 w-4" />
               </Link>
             )}
           </div>
@@ -345,13 +348,13 @@ export default function Home() {
         </section>
 
         {/* ─── CTA abonnement ──────────────────────────────── */}
-        <section className="surface-paywall texture-dots mt-14 overflow-hidden rounded-2xl p-8 text-center md:p-12" aria-label="Offre d'abonnement">
-          <p className="overline-label text-gold">Offre de lancement</p>
+        <section className="surface-paywall texture-dots mt-14 overflow-hidden rounded-2xl p-8 text-center md:p-12" aria-label={t.launchOffer}>
+          <p className="overline-label text-gold">{t.launchOffer}</p>
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-bold text-white md:text-4xl">
-            Soutenez le journalisme camerounais de qualité
+            {t.launchTitle}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sopecam-mint">
-            Dès 2 000 FCFA par mois, accédez à toute l'information SOPECAM Médias, sans limite et sans publicité.
+            {t.launchText}
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
@@ -359,16 +362,16 @@ export default function Home() {
               className="inline-flex h-12 items-center gap-2 rounded-lg bg-gold px-8 text-sm font-semibold uppercase tracking-wide text-[#1A1A1A] shadow-lg transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl"
             >
               <Crown className="h-4 w-4" />
-              Découvrir les offres
+              {t.launchCta}
             </Link>
             <Link
               to="/compte/inscription"
               className="inline-flex h-12 items-center rounded-lg border border-white/25 px-6 text-sm font-semibold uppercase tracking-wide text-white transition-colors duration-150 hover:bg-white/10"
             >
-              Créer un compte gratuit
+              {t.launchFree}
             </Link>
           </div>
-          <p className="mt-4 text-xs text-white/50">Paiement sécurisé · MTN Mobile Money · Orange Money · Carte bancaire</p>
+          <p className="mt-4 text-xs text-white/50">{t.launchFooter}</p>
         </section>
       </div>
     </div>
