@@ -10,6 +10,7 @@ import { ArticleCard } from '@/components/ArticleCard'
 import { SectionHeading } from '@/components/widgets'
 import { setPageMeta, setJsonLd, formatViews, SITE_ORIGIN } from '@/lib/utils2'
 import { useAppStore } from '@/store/appStore'
+import { useT } from '@/lib/i18n'
 
 // Univers d'atterrissage de chaque publication
 const PUB_UNIVERSE_PATH: Record<PubCode, string> = {
@@ -21,6 +22,7 @@ const PUB_UNIVERSE_PATH: Record<PubCode, string> = {
 }
 
 export default function Home() {
+  const { t } = useT()
   const { user } = useAppStore()
   useEffect(() => {
     setPageMeta('', 'SOPECAM Médias : Cameroon Tribune, CBT, Insider, Nyanga, Sports & Loisirs. L\'information souveraine du Cameroun.')
@@ -266,10 +268,81 @@ export default function Home() {
           <VideoSection />
         </div>
 
-        {/* ─── Partenaires ─────────────────────────────────── */}
-        <div className="mt-14">
-          <PartnerSection />
-        </div>
+        {/* ─── SHOPecam ────────────────────────────────────── */}
+        <section className="mt-14" aria-label="Boutique">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sopecam-green-dark via-sopecam-green to-sopecam-green-light p-8 shadow-lg md:p-10">
+            <div className="texture-dots pointer-events-none absolute inset-0 opacity-30" aria-hidden />
+            <div className="relative flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
+              <div className="flex-1">
+                <p className="overline-label text-gold">{t('shopTitle')}</p>
+                <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">SHOPecam</h2>
+                <p className="mt-2 text-sopecam-mint">{t('shopTagline')}</p>
+                <a
+                  href="https://boutique-sopecam.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-gold px-6 text-sm font-bold uppercase tracking-wide text-[#1A1A1A] shadow-md transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl"
+                >
+                  {t('shopCta')} <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="flex shrink-0 gap-3">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
+                  <span className="text-3xl font-black text-white" aria-hidden>🛒</span>
+                </div>
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
+                  <span className="text-3xl font-black text-white" aria-hidden>📰</span>
+                </div>
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur-sm">
+                  <span className="text-3xl font-black text-white" aria-hidden>💳</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Régions — Carte du Cameroun ─────────────────── */}
+        <section className="mt-14" aria-label="Régions">
+          <div className="relative overflow-hidden rounded-2xl border border-sopecam-green/20 bg-card p-8 shadow-sm md:p-10">
+            <div className="flex flex-col items-center gap-8 md:flex-row">
+              <div className="w-full max-w-sm shrink-0">
+                <svg viewBox="0 0 400 500" className="w-full drop-shadow-md" aria-label="Carte du Cameroun">
+                  <rect x="0" y="0" width="400" height="500" fill="none" />
+                  {/* Carte stylisée simplifiée du Cameroun */}
+                  <path d="M200 30 L260 60 L290 100 L310 150 L320 200 L300 240 L310 280 L290 320 L270 350 L240 370 L210 380 L190 370 L160 350 L140 320 L120 280 L110 240 L100 200 L110 150 L130 100 L160 60 Z"
+                    fill="#2d6a2d" stroke="#1a4a1a" strokeWidth="2" opacity="0.85" />
+                  {/* Régions - points */}
+                  <circle cx="200" cy="90" r="4" fill="#D4A843" /><text x="205" y="85" fontSize="9" fill="#D4A843" fontWeight="bold">Adamaoua</text>
+                  <circle cx="260" cy="120" r="4" fill="#D4A843" /><text x="265" y="115" fontSize="9" fill="#D4A843" fontWeight="bold">Nord</text>
+                  <circle cx="300" cy="180" r="4" fill="#D4A843" /><text x="305" y="175" fontSize="9" fill="#D4A843" fontWeight="bold">Extrême-Nord</text>
+                  <circle cx="220" cy="200" r="4" fill="#D4A843" /><text x="225" y="195" fontSize="9" fill="#D4A843" fontWeight="bold">Nord-Ouest</text>
+                  <circle cx="180" cy="220" r="4" fill="#D4A843" /><text x="155" y="215" fontSize="9" fill="#D4A843" fontWeight="bold">Sud-Ouest</text>
+                  <circle cx="240" cy="240" r="4" fill="#D4A843" /><text x="245" y="250" fontSize="9" fill="#D4A843" fontWeight="bold">Ouest</text>
+                  <circle cx="260" cy="290" r="4" fill="#D4A843" /><text x="265" y="300" fontSize="9" fill="#D4A843" fontWeight="bold">Centre</text>
+                  <circle cx="200" cy="310" r="4" fill="#D4A843" /><text x="175" y="320" fontSize="9" fill="#D4A843" fontWeight="bold">Littoral</text>
+                  <circle cx="280" cy="340" r="4" fill="#D4A843" /><text x="285" y="350" fontSize="9" fill="#D4A843" fontWeight="bold">Est</text>
+                  <circle cx="220" cy="370" r="4" fill="#D4A843" /><text x="195" y="380" fontSize="9" fill="#D4A843" fontWeight="bold">Sud</text>
+                </svg>
+              </div>
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 rounded-full bg-sopecam-green/10 px-3 py-1 text-xs font-semibold text-sopecam-green-dark">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sopecam-green-dark" aria-hidden />
+                  10 régions · 58 départements
+                </div>
+                <h2 className="mt-3 font-display text-2xl font-bold text-foreground md:text-3xl">{t('regionsTitle')}</h2>
+                <p className="mt-2 text-muted-foreground">{t('regionsTagline')}</p>
+                <div className="mt-5 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+                  {['Adamaoua', 'Centre', 'Est', 'Extrême-Nord', 'Littoral', 'Nord', 'Nord-Ouest', 'Ouest', 'Sud', 'Sud-Ouest'].map((r) => (
+                    <span key={r} className="inline-flex items-center gap-2 rounded-lg border border-sopecam-green/15 bg-sopecam-green/[0.04] px-3 py-2 text-foreground/80">
+                      <span className="h-2 w-2 rounded-full bg-sopecam-green/60" aria-hidden />
+                      {r}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* ─── CTA abonnement ──────────────────────────────── */}
         <section className="surface-paywall texture-dots mt-14 overflow-hidden rounded-2xl p-8 text-center md:p-12" aria-label="Offre d'abonnement">

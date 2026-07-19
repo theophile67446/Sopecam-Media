@@ -66,6 +66,11 @@ const MESSAGES = {
     // Démo
     demoNotice: 'Démonstration — aucun débit réel ne sera effectué.',
     demoAccounts: 'Comptes de démonstration',
+    shopTitle: 'Boutique SOPECAM',
+    shopTagline: 'Achetez et lisez vos éditions en numérique, abonnez-vous aux cinq publications.',
+    shopCta: 'Visiter la boutique',
+    regionsTitle: 'Régions',
+    regionsTagline: 'Toute l\'information venue des dix régions du Cameroun, par nos correspondants locaux.',
   },
   en: {
     skipToContent: 'Skip to content',
@@ -120,6 +125,11 @@ const MESSAGES = {
     explore: 'Explore',
     demoNotice: 'Demonstration — no real payment will be made.',
     demoAccounts: 'Demo accounts',
+    shopTitle: 'SOPECAM Shop',
+    shopTagline: 'Buy and read your digital editions, subscribe to all five publications.',
+    shopCta: 'Visit the shop',
+    regionsTitle: 'Regions',
+    regionsTagline: 'News from all ten regions of Cameroon, reported by our local correspondents.',
   },
 }
 
